@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Effect Script</title>
+    <style>
+      @font-face {
+        font-family: 'EstablishRetrosans';
+        font-weight: normal;
+        font-style: normal;
+        src: url('https://cdn.jsdelivr.net/gh/webfontworld/ssro/EstablishRetrosans.eot');
+        src: url('https://cdn.jsdelivr.net/gh/webfontworld/ssro/EstablishRetrosans.eot?#iefix')
+            format('embedded-opentype'),
+          url('https://cdn.jsdelivr.net/gh/webfontworld/ssro/EstablishRetrosans.woff2')
+            format('woff2'),
+          url('https://cdn.jsdelivr.net/gh/webfontworld/ssro/EstablishRetrosans.woff')
+            format('woff'),
+          url('https://cdn.jsdelivr.net/gh/webfontworld/ssro/EstablishRetrosans.ttf')
+            format('truetype');
+        font-display: swap;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* mouse */
+      .mouse {
+        background: #222;
+        color: #fff;
+        font-weight: 400;
+      }
+      .bg {
+        position: relative;
+        height: 100vh;
+        background-image: url(https://images.unsplash.com/photo-1536602012356-86c345795580?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+      .bg::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(125, 125, 125, 0.9);
+        z-index: -1;
+      }
+
+      /* mouseCont */
+      .mouseCont {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #fff;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        font-family: 'EstablishRetrosans';
+      }
+      .mouseCont p {
+        font-size: 3vw;
+        line-height: 2;
+        font-weight: 300;
+      }
+      .mouseCont p:last-child {
+        font-size: 3.5vw;
+        font-weight: normal;
+        font-weight: 400;
+      }
+      .mouseCont em {
+        font-style: normal;
+        border-bottom: 0.2vw dashed orange;
+        color: orange;
+      }
+      .cursor {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        background-image: url(https://images.unsplash.com/photo-1536602012356-86c345795580?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body class="mouse bg">
+    <!-- main -->
+    <main>
+      <div class="cursor"></div>
+
+      <article class="mouseCont">
+        <p>I dream my painting and I paint my dream</p>
+        <p>나는 나의 그림을 <em>꿈</em> 꾸고, 내 <em>꿈</em>을 그린다.</p>
+      </article>
+    </main>
+    <!-- //main -->
+
+    <!-- info -->
+    <div class="info">
+      <h1><a href="mouseIndex.html">Mouse Effect04 - jQuery</a></h1>
+      <p>마우스 이펙트 - 조명효과</p>
+    </div>
+
+    <!-- //info -->
+    <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+      const width = $('.cursor').width() / 2;
+      const height = $('.cursor').height() / 2;
+      $(window).mousemove(function (e) {
+        gsap.to('.cursor', {
+          duration: 0.5,
+          left: e.pageX - width,
+          top: e.pageY - height,
+        });
+
+        // 출력용
+        $('.pageX').text(e.pageX + 'px');
+        $('.pageY').text(e.pageY + 'px');
+      });
+    </script>
+  </body>
+</html>
